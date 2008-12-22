@@ -54,7 +54,7 @@
 		84CFAEFD090964560053C22C /* AUCarbonViewBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5D19AA703175F3201CA2136 /* AUCarbonViewBase.cpp */; };
 		84CFAF0E090965080053C22C /* CarbonEventHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5D19AB003175F3201CA2136 /* CarbonEventHandler.cpp */; };
 		84CFAF10090965080053C22C /* CAAUParameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF64FA42057BC39200D99563 /* CAAUParameter.cpp */; };
-		84CFB029090968590053C22C /* DemoJuceAudioUnit.component in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3E8BF126079CA60300021B09 /* DemoJuceAudioUnit.component */; };
+		84CFB029090968590053C22C /* dRowAudio_Tremolo.component in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3E8BF126079CA60300021B09 /* dRowAudio_Tremolo.component */; };
 		84EB4042090A4F5A008FAC1B /* CAVectorUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4E5DC280898301D00589A5A /* CAVectorUnit.cpp */; };
 		84EB404E090A5116008FAC1B /* JucePluginCharacteristics.h in Headers */ = {isa = PBXBuildFile; fileRef = 84EB404D090A5116008FAC1B /* JucePluginCharacteristics.h */; };
 		84F054E80906C8DD00AEC8DB /* AUMIDIBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84F054E40906C8DD00AEC8DB /* AUMIDIBase.cpp */; };
@@ -88,14 +88,14 @@
 			dstPath = "$HOME/Library/Audio/Plug-Ins/Components";
 			dstSubfolderSpec = 0;
 			files = (
-				84CFB029090968590053C22C /* DemoJuceAudioUnit.component in CopyFiles */,
+				84CFB029090968590053C22C /* dRowAudio_Tremolo.component in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3E8BF126079CA60300021B09 /* DemoJuceAudioUnit.component */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DemoJuceAudioUnit.component; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E8BF126079CA60300021B09 /* dRowAudio_Tremolo.component */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dRowAudio_Tremolo.component; sourceTree = BUILT_PRODUCTS_DIR; };
 		55B5BC700EFF10BD009EFA62 /* Juce.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Juce.xcodeproj; path = ../../../../juce/build/macosx/Juce.xcodeproj; sourceTree = SOURCE_ROOT; };
 		55B5BC830EFF1147009EFA62 /* juce_amalgamated.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = juce_amalgamated.mm; path = ../../../../juce/juce_amalgamated.mm; sourceTree = SOURCE_ROOT; };
 		55B5BC900EFF1254009EFA62 /* juce.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = juce.xcconfig; path = ../../../../juce/build/macosx/juce.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -256,7 +256,7 @@
 		F5AA99C40281A62C01C34293 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3E8BF126079CA60300021B09 /* DemoJuceAudioUnit.component */,
+				3E8BF126079CA60300021B09 /* dRowAudio_Tremolo.component */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -436,7 +436,7 @@
 			name = JuceAU;
 			productInstallPath = "$(USER_LIBRARY_DIR)/Bundles";
 			productName = MultitapAU;
-			productReference = 3E8BF126079CA60300021B09 /* DemoJuceAudioUnit.component */;
+			productReference = 3E8BF126079CA60300021B09 /* dRowAudio_Tremolo.component */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -532,6 +532,7 @@
 		A9E884AE0874ABE600B2DFE8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				AU_NAME = dRowAudio_Tremolo;
 				COPY_PHASE_STRIP = NO;
 				EXPORTED_SYMBOLS_FILE = JuceAU.exp;
 				FRAMEWORK_SEARCH_PATHS = "";
@@ -566,6 +567,7 @@
 		A9E884AF0874ABE600B2DFE8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				AU_NAME = dRowAudio_Tremolo;
 				COPY_PHASE_STRIP = YES;
 				EXPORTED_SYMBOLS_FILE = JuceAU.exp;
 				FRAMEWORK_SEARCH_PATHS = "";

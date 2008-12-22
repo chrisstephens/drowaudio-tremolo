@@ -5,5 +5,5 @@
 # more info, see the comments in JucePluginCharacteristics.h
 #
 
-_JuceDemoAUEntry
-_JuceDemoAUViewEntry
+_dRowAudio_TremoloEntry
+_dRowAudio_TremoloViewEntry

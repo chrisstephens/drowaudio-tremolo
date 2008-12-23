@@ -19,6 +19,8 @@
 		55B5BC910EFF1254009EFA62 /* juce.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 55B5BC900EFF1254009EFA62 /* juce.xcconfig */; };
 		55B5BCAD0EFF15D0009EFA62 /* juce_AudioUnitWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55B5BCAB0EFF15D0009EFA62 /* juce_AudioUnitWrapper.cpp */; };
 		55B5BCAE0EFF15D0009EFA62 /* juce_AudioUnitWrapper.r in Rez */ = {isa = PBXBuildFile; fileRef = 55B5BCAC0EFF15D0009EFA62 /* juce_AudioUnitWrapper.r */; };
+		55F710050F0058B5009D9CD1 /* TremoloCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55F710030F0058B5009D9CD1 /* TremoloCommon.cpp */; };
+		55F710060F0058B5009D9CD1 /* TremoloCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 55F710040F0058B5009D9CD1 /* TremoloCommon.h */; };
 		84581F8F0D917FC700AE1A4C /* AUBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84581F820D917FC700AE1A4C /* AUBase.cpp */; };
 		84581F900D917FC700AE1A4C /* AUBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 84581F830D917FC700AE1A4C /* AUBase.h */; };
 		84581F910D917FC700AE1A4C /* AUDispatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84581F840D917FC700AE1A4C /* AUDispatch.cpp */; };
@@ -101,6 +103,8 @@
 		55B5BC900EFF1254009EFA62 /* juce.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = juce.xcconfig; path = ../../../../juce/build/macosx/juce.xcconfig; sourceTree = SOURCE_ROOT; };
 		55B5BCAB0EFF15D0009EFA62 /* juce_AudioUnitWrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = juce_AudioUnitWrapper.cpp; path = "../../../../juce/extras/audio plugins/wrapper/formats/AudioUnit/juce_AudioUnitWrapper.cpp"; sourceTree = SOURCE_ROOT; };
 		55B5BCAC0EFF15D0009EFA62 /* juce_AudioUnitWrapper.r */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.rez; name = juce_AudioUnitWrapper.r; path = "../../../../juce/extras/audio plugins/wrapper/formats/AudioUnit/juce_AudioUnitWrapper.r"; sourceTree = SOURCE_ROOT; };
+		55F710030F0058B5009D9CD1 /* TremoloCommon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TremoloCommon.cpp; path = ../../src/TremoloCommon.cpp; sourceTree = SOURCE_ROOT; };
+		55F710040F0058B5009D9CD1 /* TremoloCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TremoloCommon.h; path = ../../src/TremoloCommon.h; sourceTree = SOURCE_ROOT; };
 		7967EF8B04D70E7C00C625F7 /* CAAudioChannelLayout.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = CAAudioChannelLayout.cpp; sourceTree = "<group>"; };
 		7967EF8C04D70E7C00C625F7 /* CAAudioChannelLayout.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CAAudioChannelLayout.h; sourceTree = "<group>"; };
 		7967EF8D04D70E7C00C625F7 /* CAStreamBasicDescription.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = CAStreamBasicDescription.cpp; sourceTree = "<group>"; };
@@ -213,10 +217,12 @@
 		84F0516D09066DB800AEC8DB /* Plugin Code */ = {
 			isa = PBXGroup;
 			children = (
-				84F055000906E9EA00AEC8DB /* DemoJuceFilter.h */,
-				84F054FF0906E9EA00AEC8DB /* DemoJuceFilter.cpp */,
+				55F710040F0058B5009D9CD1 /* TremoloCommon.h */,
+				55F710030F0058B5009D9CD1 /* TremoloCommon.cpp */,
 				84F054FE0906E9EA00AEC8DB /* DemoEditorComponent.h */,
 				84F054FD0906E9EA00AEC8DB /* DemoEditorComponent.cpp */,
+				84F055000906E9EA00AEC8DB /* DemoJuceFilter.h */,
+				84F054FF0906E9EA00AEC8DB /* DemoJuceFilter.cpp */,
 				84EB404D090A5116008FAC1B /* JucePluginCharacteristics.h */,
 				84C09D290DE2C52600606895 /* includes.h */,
 				55B5BC830EFF1147009EFA62 /* juce_amalgamated.mm */,
@@ -412,6 +418,7 @@
 				84581F990D917FC700AE1A4C /* AUScopeElement.h in Headers */,
 				84581F9B0D917FC700AE1A4C /* ComponentBase.h in Headers */,
 				84C09D2A0DE2C52600606895 /* includes.h in Headers */,
+				55F710060F0058B5009D9CD1 /* TremoloCommon.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,6 +530,7 @@
 				84581F9A0D917FC700AE1A4C /* ComponentBase.cpp in Sources */,
 				55B5BC840EFF1147009EFA62 /* juce_amalgamated.mm in Sources */,
 				55B5BCAD0EFF15D0009EFA62 /* juce_AudioUnitWrapper.cpp in Sources */,
+				55F710050F0058B5009D9CD1 /* TremoloCommon.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

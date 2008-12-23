@@ -213,12 +213,12 @@
     _abcEntry
     _abcViewEntry
 */
-#define JucePlugin_AUExportPrefix           JuceDemoAU
+#define JucePlugin_AUExportPrefix           dRowAudio_Tremolo
 
 /** This is the same as JucePlugin_AUExportPrefix, but in quotes
     (needed for the resource compiler...)
 */
-#define JucePlugin_AUExportPrefixQuoted     "JuceDemoAU"
+#define JucePlugin_AUExportPrefixQuoted     "dRowAudio_Tremolo"
 
 /** A 4-character manufacturer code - this is your company name.
     You can leave this using the generic value JucePlugin_ManufacturerCode, or
@@ -230,7 +230,7 @@
     plugin's plist, it allows the plugin to work out its own path, which is
     needed if you want to use File::getSpecialLocation (currentExecutableFile)
 */
-#define JucePlugin_CFBundleIdentifier       "com.rawmaterialsoftware.JuceDemo"
+#define JucePlugin_CFBundleIdentifier       "dRowAudio.Tremolo"
 
 //==============================================================================
 /*                                RTAS settings                               */

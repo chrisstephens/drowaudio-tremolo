@@ -37,7 +37,6 @@
 /**
     A simple plugin filter that just applies a gain change to the audio
     passing through it.
-
 */
 class DemoJuceFilter  : public AudioProcessor,
                         public ChangeBroadcaster
@@ -108,9 +107,20 @@ public:
     juce_UseDebuggingNewOperator
 
 private:
-    // this is our gain - the UI and the host can access this by getting/setting
+    double currentSampleRate;
+	float currentScalingFactor;
+	float nextScalingFactor;
+	
+	// this is our gain - the UI and the host can access this by getting/setting
     // parameter 0.
     float gain;
+	float rate;
+	float depth;
+	
+	static const int tremoloBufferSize = 2000;
+	float tremoloBuffer[tremoloBufferSize];
+	int tremoloBufferPosition;
+	long mSamplesProcessed;
 };
 
 

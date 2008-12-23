@@ -874,7 +874,7 @@
 	};
 	55F710030F0058B5009D9CD1 /* TremoloCommon.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {935, 641}}";
+			sepNavIntBoundsRect = "{{0, 0}, {935, 439}}";
 			sepNavSelRange = "{130, 313}";
 			sepNavVisRange = "{0, 443}";
 		};
@@ -2353,6 +2353,36 @@
 		vrLen = 530;
 		vrLoc = 625;
 	};
+	55F712270F015615009D9CD1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 55F710040F0058B5009D9CD1 /* TremoloCommon.h */;
+		name = "TremoloCommon.h: 27";
+		rLen = 0;
+		rLoc = 826;
+		rType = 0;
+		vrLen = 530;
+		vrLoc = 625;
+	};
+	55F712280F015615009D9CD1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 55F710040F0058B5009D9CD1 /* TremoloCommon.h */;
+		name = "TremoloCommon.h: 27";
+		rLen = 0;
+		rLoc = 826;
+		rType = 0;
+		vrLen = 530;
+		vrLoc = 625;
+	};
+	55F712290F015615009D9CD1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 55F710030F0058B5009D9CD1 /* TremoloCommon.cpp */;
+		name = "TremoloCommon.cpp: 6";
+		rLen = 313;
+		rLoc = 130;
+		rType = 0;
+		vrLen = 443;
+		vrLoc = 0;
+	};
 	84C09D290DE2C52600606895 /* includes.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {935, 641}}";
@@ -2748,6 +2778,9 @@
 			55F712200F015573009D9CD1 /* PBXTextBookmark */ = 55F712200F015573009D9CD1 /* PBXTextBookmark */;
 			55F712210F015573009D9CD1 /* PBXTextBookmark */ = 55F712210F015573009D9CD1 /* PBXTextBookmark */;
 			55F712220F015573009D9CD1 /* PBXTextBookmark */ = 55F712220F015573009D9CD1 /* PBXTextBookmark */;
+			55F712270F015615009D9CD1 /* PBXTextBookmark */ = 55F712270F015615009D9CD1 /* PBXTextBookmark */;
+			55F712280F015615009D9CD1 /* PBXTextBookmark */ = 55F712280F015615009D9CD1 /* PBXTextBookmark */;
+			55F712290F015615009D9CD1 /* PBXTextBookmark */ = 55F712290F015615009D9CD1 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 550CD1E40E9C574D00E01D3B /* Source Control */;
 		userBuildSettings = {

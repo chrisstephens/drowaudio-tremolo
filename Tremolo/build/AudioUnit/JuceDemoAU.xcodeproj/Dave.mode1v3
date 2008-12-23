@@ -281,6 +281,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -327,7 +329,9 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>24</integer>
+									<integer>2</integer>
+									<integer>1</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -368,7 +372,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>TremoloCommon.h</string>
+								<string>TremoloCommon.cpp</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -376,11 +380,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>TremoloCommon.h</string>
+										<string>TremoloCommon.cpp</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>55F712220F015573009D9CD1</string>
+										<string>55F712290F015615009D9CD1</string>
 										<key>history</key>
 										<array>
 											<string>55B5BCB70EFF1703009EFA62</string>
@@ -390,13 +394,13 @@
 											<string>55F70E600EFF4CC8009D9CD1</string>
 											<string>55F70F8E0EFF5C70009D9CD1</string>
 											<string>55F710100F007A49009D9CD1</string>
-											<string>55F710120F007A49009D9CD1</string>
 											<string>55F711360F00AAEA009D9CD1</string>
 											<string>55F711420F00ABAA009D9CD1</string>
 											<string>55F711690F00AFE1009D9CD1</string>
 											<string>55F711E30F014F72009D9CD1</string>
 											<string>55F712200F015573009D9CD1</string>
-											<string>55F710110F007A49009D9CD1</string>
+											<string>55F712270F015615009D9CD1</string>
+											<string>55F710120F007A49009D9CD1</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -423,6 +427,7 @@
 											<string>55F711E70F014F72009D9CD1</string>
 											<string>55F711E80F014F72009D9CD1</string>
 											<string>55F712210F015573009D9CD1</string>
+											<string>55F712280F015615009D9CD1</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -444,8 +449,6 @@
 							<string>471pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -603,7 +606,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>251745651.39018399</real>
+	<real>251745813.66659999</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>

@@ -82,8 +82,13 @@ public:
 private:
     //==============================================================================
     Slider* gainSlider;
+	Slider* rateSlider;
+	Slider* depthSlider;
     MidiKeyboardComponent* midiKeyboard;
-    Label* infoLabel;
+    Label* gainLabel;
+	Label* rateLabel;
+	Label* depthLabel;
+	Label* infoLabel;
     ResizableCornerComponent* resizer;
     ComponentBoundsConstrainer resizeLimits;
     TooltipWindow tooltipWindow;

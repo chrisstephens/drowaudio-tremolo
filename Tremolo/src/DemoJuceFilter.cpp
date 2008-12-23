@@ -30,9 +30,16 @@
 */
 
 #include "includes.h"
+#include "TremoloCommon.h"
 #include "DemoJuceFilter.h"
 #include "DemoEditorComponent.h"
 
+/** List of todo's:
+	
+	@todo Make parameters enums for easier code reading
+	@todo Make parameters an array for simplier code
+	@todo Change name of classes and files
+ */
 
 //==============================================================================
 /**
@@ -45,9 +52,12 @@ AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 }
 
 //==============================================================================
-DemoJuceFilter::DemoJuceFilter()
+#pragma mark ____TremoloConstructor
+DemoJuceFilter::DemoJuceFilter() : mSamplesProcessed(0)
 {
     gain = 1.0f;
+	rate = 1.0f;
+	depth = 1.0f;
     lastUIWidth = 400;
     lastUIHeight = 140;
 
@@ -55,6 +65,9 @@ DemoJuceFilter::DemoJuceFilter()
     lastPosInfo.timeSigNumerator = 4;
     lastPosInfo.timeSigDenominator = 4;
     lastPosInfo.bpm = 120;
+	
+	
+	tremoloBufferPosition = 0;
 }
 
 DemoJuceFilter::~DemoJuceFilter()
@@ -64,20 +77,31 @@ DemoJuceFilter::~DemoJuceFilter()
 //==============================================================================
 const String DemoJuceFilter::getName() const
 {
-    return "Juce Demo Filter";
+    return "dRowAudio Tremolo";
 }
 
 int DemoJuceFilter::getNumParameters()
 {
-    return 1;
+    return 3;
 }
 
 // Deals with getting parameters from the UI components
 float DemoJuceFilter::getParameter (int index)
 {
     // gain parameter
-	return (index == 0) ? gain
-                        : 0.0f;
+	if (index == 0)
+		return gain;
+	
+	// rate parameter
+	else if (index == 1)
+		return rate;
+	
+	// depth parameter
+	else if (index == 2)
+		return depth;
+
+	else
+		return 0.0f;
 }
 
 // Deals with setting the UI components
@@ -95,12 +119,43 @@ void DemoJuceFilter::setParameter (int index, float newValue)
             sendChangeMessage (this);
         }
     }
+	
+	// rate parameter
+	else if (index == 1)
+    {
+        if (rate != newValue)
+        {
+            rate = newValue;
+			
+            // if this is changing the gain, broadcast a change message which
+            // our editor will pick up.
+            sendChangeMessage (this);
+        }
+    }
+	
+	// depth parameter
+	else if (index == 2)
+    {
+        if (depth != newValue)
+        {
+            depth = newValue;
+			
+            // if this is changing the gain, broadcast a change message which
+            // our editor will pick up.
+            sendChangeMessage (this);
+        }
+    }
 }
 
 const String DemoJuceFilter::getParameterName (int index)
 {
-    if (index == 0)
-        return T("gain");
+    // Name parameters
+	if (index == 0)
+        return T("Gain");
+	if (index == 1)
+        return T("Rate");
+	if (index == 2)
+        return T("Depth");
 
     return String::empty;
 }
@@ -109,8 +164,12 @@ const String DemoJuceFilter::getParameterText (int index)
 {
     if (index == 0)
         return String (gain, 2);
-
-    return String::empty;
+	else if (index == 1)
+        return String(rate, 2);
+	else if (index == 2)
+        return String (depth, 2);
+	else
+		return String::empty;
 }
 
 const String DemoJuceFilter::getInputChannelName (const int channelIndex) const
@@ -148,6 +207,16 @@ void DemoJuceFilter::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     // do your pre-playback setup stuff here..
     keyboardState.reset();
+	
+	currentSampleRate = sampleRate;
+	
+	// Set up modulation buffer	
+	for (int i = 0; i < tremoloBufferSize; ++i)
+	{
+		// fill buffer with sine data
+		double radians = i * 2.0 * (pi / tremoloBufferSize);
+        tremoloBuffer[i] = (sin (radians) + 1.0) * 0.5;
+    }
 }
 
 void DemoJuceFilter::releaseResources()
@@ -156,6 +225,7 @@ void DemoJuceFilter::releaseResources()
     // spare memory, etc.
 }
 
+#pragma mark ____processBlock
 void DemoJuceFilter::processBlock (AudioSampleBuffer& buffer,
                                    MidiBuffer& midiMessages)
 {
@@ -165,7 +235,52 @@ void DemoJuceFilter::processBlock (AudioSampleBuffer& buffer,
     {
         buffer.applyGain (channel, 0, buffer.getNumSamples(), gain);
     }
+	
+	// find the number of samples in the buffer to process
+	int numSamples = buffer.getNumSamples();
+	
+	float samplesPerTremoloCycle = currentSampleRate / rate;
+	float nextScalingFactor = tremoloBufferSize / samplesPerTremoloCycle;
+	
+//	samplesPerTremoloCycle = mSampleFrequency / tremoloFrequency; // 25
+//	mNextScale = kWaveArraySize / samplesPerTremoloCycle;
+	
+	//===================================================================
+	// Main Sample Loop
+	//===================================================================
 
+	while (--numSamples >= 0)
+	{
+		int tremoloBufferPosition =	long(mSamplesProcessed * currentScalingFactor) % tremoloBufferSize;
+		
+		// change the scaling factor if it is safe to do so 
+		if ((nextScalingFactor != currentScalingFactor) && (tremoloBufferPosition == 0))
+		{
+			currentScalingFactor = nextScalingFactor;
+			mSamplesProcessed = 0;
+		}
+		if ((mSamplesProcessed >= 4326) && (tremoloBufferPosition == 0))   // 30
+			mSamplesProcessed = 0;
+		
+		for (int channel = 0; channel < getNumInputChannels(); ++channel)
+		{
+			float inSample = *buffer.getSampleData(channel, numSamples);
+			float outSample = inSample;
+			
+//			*buffer.getSampleData(channel, numSamples) *= rate;	//apply gain using rate parameter
+			
+			outSample *= (((tremoloBuffer[tremoloBufferPosition] -0.5) * depth) + 0.5);
+			*buffer.getSampleData(channel, numSamples) = outSample;
+		}
+		mSamplesProcessed++;
+		// increment buffer position
+//		tremoloBufferPosition++;
+//		if (tremoloBufferPosition == tremoloBufferSize)
+//			tremoloBufferPosition = 0;
+		// increment our counter
+    }
+	
+	
 	
     // in case we have more outputs than inputs, we'll clear any output
     // channels that didn't contain input data, (because these aren't
@@ -209,6 +324,8 @@ AudioProcessorEditor* DemoJuceFilter::createEditor()
     return new DemoEditorComponent (this);
 }
 
+#pragma mark -
+#pragma mark State Information
 //==============================================================================
 void DemoJuceFilter::getStateInformation (MemoryBlock& destData)
 {
@@ -223,6 +340,8 @@ void DemoJuceFilter::getStateInformation (MemoryBlock& destData)
     // add some attributes to it..
     xmlState.setAttribute (T("pluginVersion"), 1);
     xmlState.setAttribute (T("gainLevel"), gain);
+	xmlState.setAttribute (T("rateAmount"), rate);
+	xmlState.setAttribute (T("depthAmount"), depth);
     xmlState.setAttribute (T("uiWidth"), lastUIWidth);
     xmlState.setAttribute (T("uiHeight"), lastUIHeight);
 
@@ -245,6 +364,8 @@ void DemoJuceFilter::setStateInformation (const void* data, int sizeInBytes)
         {
             // ok, now pull out our parameters..
             gain = (float) xmlState->getDoubleAttribute (T("gainLevel"), gain);
+			rate = (float) xmlState->getDoubleAttribute (T("rateAmount"), rate);
+			depth = (float) xmlState->getDoubleAttribute (T("depthAmount"), depth);
 
             lastUIWidth = xmlState->getIntAttribute (T("uiWidth"), lastUIWidth);
             lastUIHeight = xmlState->getIntAttribute (T("uiHeight"), lastUIHeight);

@@ -30,6 +30,7 @@
 */
 
 #include "includes.h"
+#include "TremoloCommon.h"
 #include "DemoEditorComponent.h"
 
 //==============================================================================
@@ -74,15 +75,40 @@ static const String ppqToBarsBeatsString (const double ppq,
 DemoEditorComponent::DemoEditorComponent (DemoJuceFilter* const ownerFilter)
     : AudioProcessorEditor (ownerFilter)
 {
-    // create our gain slider..
+	// create our gain slider..
     addAndMakeVisible (gainSlider = new Slider (T("Gain")));
     gainSlider->addListener (this);
     gainSlider->setRange (0.0, 1.0, 0.01);
-    gainSlider->setTooltip (T("changes the volume of the audio that runs through the plugin.."));
+    gainSlider->setTooltip (T("changes the volume of the audio that runs through the plugin"));
 
     // get the gain parameter from the filter and use it to set up our slider
     gainSlider->setValue (ownerFilter->getParameter (0), false);
-
+	
+	addAndMakeVisible(gainLabel = new Label(T("gainLabel"),T("Gain")));
+	
+	
+	// create the rate and depth sliders
+	addAndMakeVisible(rateSlider = new Slider (T("Rate")));
+	rateSlider->setSliderStyle(Slider::Rotary);
+	rateSlider->setTextBoxStyle(Slider::TextBoxBelow, false, 50, 15);
+	rateSlider->addListener (this);
+    rateSlider->setRange (0.0, 1.0, 0.01);
+    rateSlider->setTooltip (T("changes the rate of the tremolo effect"));
+    rateSlider->setValue (ownerFilter->getParameter (1), false);
+	addAndMakeVisible(rateLabel = new Label(T("rateLabel"),T("Rate")));
+	rateLabel->setJustificationType(Justification::centred);
+	
+	addAndMakeVisible(depthSlider = new Slider (T("Depth")));
+	depthSlider->setSliderStyle(Slider::Rotary);
+	depthSlider->setTextBoxStyle(Slider::TextBoxBelow, false, 50, 15);
+	depthSlider->addListener (this);
+    depthSlider->setRange (0.0, 1.0, 0.01);
+    depthSlider->setTooltip (T("changes the depth of the tremolo effect"));
+    depthSlider->setValue (ownerFilter->getParameter (2), false);
+	addAndMakeVisible(depthLabel = new Label(T("depthLabel"),T("Depth")));
+	depthLabel->setJustificationType(Justification::centred);
+	
+	
     // create and add the midi keyboard component..
     addAndMakeVisible (midiKeyboard
         = new MidiKeyboardComponent (ownerFilter->keyboardState,
@@ -121,12 +147,19 @@ void DemoEditorComponent::paint (Graphics& g)
 
 void DemoEditorComponent::resized()
 {
-    gainSlider->setBounds (10, 10, 200, 22);
+    gainLabel->setBounds(10, 10, 40, 22);
+	gainSlider->setBounds (50, 10, 200, 22);
     infoLabel->setBounds (10, 35, 450, 20);
+	
+	rateLabel->setBounds (10, 55, 50, 20);
+	depthLabel->setBounds (80, 55, 50, 20);
+	
+	rateSlider->setBounds (10, 75, 50, 60);
+	depthSlider->setBounds (80, 75, 50, 60);
 
-    const int keyboardHeight = 70;
-    midiKeyboard->setBounds (4, getHeight() - keyboardHeight - 4,
-                             getWidth() - 8, keyboardHeight);
+//    const int keyboardHeight = 70;
+//    midiKeyboard->setBounds (4, getHeight() - keyboardHeight - 4,
+//                             getWidth() - 8, keyboardHeight);
 
     resizer->setBounds (getWidth() - 16, getHeight() - 16, 16, 16);
 
@@ -144,9 +177,16 @@ void DemoEditorComponent::changeListenerCallback (void* source)
     updateParametersFromFilter();
 }
 
-void DemoEditorComponent::sliderValueChanged (Slider*)
+void DemoEditorComponent::sliderValueChanged (Slider* changedSlider)
 {
-    getFilter()->setParameterNotifyingHost (0, (float) gainSlider->getValue());
+    if (changedSlider == gainSlider)
+		getFilter()->setParameterNotifyingHost (0, (float) gainSlider->getValue());
+	
+	else if (changedSlider == rateSlider)
+		getFilter()->setParameterNotifyingHost (1, (float) rateSlider->getValue());
+	
+	else if (changedSlider == depthSlider)
+		getFilter()->setParameterNotifyingHost (2, (float) depthSlider->getValue());
 }
 
 //==============================================================================
@@ -162,6 +202,8 @@ void DemoEditorComponent::updateParametersFromFilter()
     // take a local copy of the info we need while we've got the lock..
     const AudioPlayHead::CurrentPositionInfo positionInfo (filter->lastPosInfo);
     const float newGain = filter->getParameter (0);
+	const float newRate = filter->getParameter (1);
+	const float newTremDepth = filter->getParameter (2);
 
     // ..release the lock ASAP
     filter->getCallbackLock().exit();
@@ -189,6 +231,8 @@ void DemoEditorComponent::updateParametersFromFilter()
        change message again, and the values would drift out.
     */
     gainSlider->setValue (newGain, false);
+	rateSlider->setValue (newRate, false);
+	depthSlider->setValue (newTremDepth, false);
 
     setSize (filter->lastUIWidth,
              filter->lastUIHeight);

@@ -463,7 +463,7 @@
 					ProjectRef = 55B5BC700EFF10BD009EFA62 /* Juce.xcodeproj */;
 				},
 			);
-			projectRoot = "";
+			projectRoot = ../..;
 			targets = (
 				3E8BF102079CA60300021B09 /* JuceAU */,
 			);

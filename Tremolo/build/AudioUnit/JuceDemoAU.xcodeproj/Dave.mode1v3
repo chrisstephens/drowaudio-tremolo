@@ -322,13 +322,12 @@
 								<string>F5D199EA03175DB401CA2136</string>
 								<string>84F0516D09066DB800AEC8DB</string>
 								<string>F5AA99C40281A62C01C34293</string>
-								<string>F5AA9E890281AAC901C34293</string>
 								<string>1C37FAAC04509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>6</integer>
+									<integer>3</integer>
 									<integer>2</integer>
 									<integer>1</integer>
 									<integer>0</integer>
@@ -374,7 +373,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>DemoEditorComponent.cpp</string>
+								<string>dRowTremoloCommon.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -382,28 +381,30 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>DemoEditorComponent.cpp</string>
+										<string>dRowTremoloCommon.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>55F713160F01C296009D9CD1</string>
+										<string>55F713DC0F01FB88009D9CD1</string>
 										<key>history</key>
 										<array>
 											<string>55B5BCB70EFF1703009EFA62</string>
 											<string>55B5BCB80EFF1703009EFA62</string>
 											<string>55F70E600EFF4CC8009D9CD1</string>
 											<string>55F70F8E0EFF5C70009D9CD1</string>
-											<string>55F712BC0F01AC2D009D9CD1</string>
-											<string>55F712FD0F01C0E7009D9CD1</string>
-											<string>55F712FE0F01C0E7009D9CD1</string>
 											<string>55F712FF0F01C0E7009D9CD1</string>
 											<string>55F713000F01C0E7009D9CD1</string>
 											<string>55F713010F01C0E7009D9CD1</string>
 											<string>55F713020F01C0E7009D9CD1</string>
-											<string>55F713030F01C0E7009D9CD1</string>
-											<string>55F713040F01C0E7009D9CD1</string>
-											<string>55F713050F01C0E7009D9CD1</string>
-											<string>55F712BB0F01AC2D009D9CD1</string>
+											<string>55F713760F01F571009D9CD1</string>
+											<string>55F713AB0F01FA14009D9CD1</string>
+											<string>55F713C90F01FB88009D9CD1</string>
+											<string>55F713CA0F01FB88009D9CD1</string>
+											<string>55F713CB0F01FB88009D9CD1</string>
+											<string>55F713CC0F01FB88009D9CD1</string>
+											<string>55F713CD0F01FB88009D9CD1</string>
+											<string>55F713CE0F01FB88009D9CD1</string>
+											<string>55F713CF0F01FB88009D9CD1</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -476,6 +477,39 @@
 											<string>55F7130C0F01C0E7009D9CD1</string>
 											<string>55F7130D0F01C0E7009D9CD1</string>
 											<string>55F7130E0F01C0E7009D9CD1</string>
+											<string>55F713330F01DB8B009D9CD1</string>
+											<string>55F713780F01F571009D9CD1</string>
+											<string>55F713790F01F571009D9CD1</string>
+											<string>55F7137A0F01F571009D9CD1</string>
+											<string>55F7137B0F01F571009D9CD1</string>
+											<string>55F7137C0F01F571009D9CD1</string>
+											<string>55F7137D0F01F571009D9CD1</string>
+											<string>55F7137E0F01F571009D9CD1</string>
+											<string>55F7137F0F01F571009D9CD1</string>
+											<string>55F713800F01F571009D9CD1</string>
+											<string>55F713810F01F571009D9CD1</string>
+											<string>55F713820F01F571009D9CD1</string>
+											<string>55F713AE0F01FA14009D9CD1</string>
+											<string>55F713AF0F01FA14009D9CD1</string>
+											<string>55F713B00F01FA14009D9CD1</string>
+											<string>55F713B10F01FA14009D9CD1</string>
+											<string>55F713B20F01FA14009D9CD1</string>
+											<string>55F713B30F01FA14009D9CD1</string>
+											<string>55F713B40F01FA14009D9CD1</string>
+											<string>55F713B50F01FA14009D9CD1</string>
+											<string>55F713B60F01FA14009D9CD1</string>
+											<string>55F713D00F01FB88009D9CD1</string>
+											<string>55F713D10F01FB88009D9CD1</string>
+											<string>55F713D20F01FB88009D9CD1</string>
+											<string>55F713D30F01FB88009D9CD1</string>
+											<string>55F713D40F01FB88009D9CD1</string>
+											<string>55F713D50F01FB88009D9CD1</string>
+											<string>55F713D60F01FB88009D9CD1</string>
+											<string>55F713D70F01FB88009D9CD1</string>
+											<string>55F713D80F01FB88009D9CD1</string>
+											<string>55F713D90F01FB88009D9CD1</string>
+											<string>55F713DA0F01FB88009D9CD1</string>
+											<string>55F713DB0F01FB88009D9CD1</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -654,7 +688,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>251773590.324388</real>
+	<real>251788168.05954999</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -690,14 +724,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>DemoJuceFilter.cpp</string>
+								<string>dRowTremoloFilter.h</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -714,6 +746,8 @@
 							<string>327pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -884,14 +918,12 @@
 							<key>Dock</key>
 							<array>
 								<dict>
-									<key>BecomeActive</key>
-									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>DemoJuceFilter.h</string>
+										<string>AUBase.h</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -900,7 +932,7 @@
 										<key>Frame</key>
 										<string>{{0, 0}, {987, 373}}</string>
 										<key>RubberWindowFrame</key>
-										<string>142 74 987 672 0 0 1280 778 </string>
+										<string>286 54 987 672 0 0 1280 778 </string>
 									</dict>
 									<key>Module</key>
 									<string>PBXNavigatorGroup</string>
@@ -912,6 +944,8 @@
 							<string>373pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -924,7 +958,7 @@
 								<key>Frame</key>
 								<string>{{0, 378}, {987, 253}}</string>
 								<key>RubberWindowFrame</key>
-								<string>142 74 987 672 0 0 1280 778 </string>
+								<string>286 54 987 672 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXProjectFindModule</string>
@@ -953,7 +987,7 @@
 				<string>1CD0528E0623707200166675</string>
 			</array>
 			<key>WindowString</key>
-			<string>142 74 987 672 0 0 1280 778 </string>
+			<string>286 54 987 672 0 0 1280 778 </string>
 			<key>WindowToolGUID</key>
 			<string>1C530D57069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>

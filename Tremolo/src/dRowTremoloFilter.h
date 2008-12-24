@@ -29,8 +29,8 @@
   ==============================================================================
 */
 
-#ifndef DEMOJUCEPLUGINFILTER_H
-#define DEMOJUCEPLUGINFILTER_H
+#ifndef DROWTREMOLOFILTER_H
+#define DROWTREMOLOFILTER_H
 
 
 //==============================================================================
@@ -38,13 +38,13 @@
     A simple plugin filter that just applies a gain change to the audio
     passing through it.
 */
-class DemoJuceFilter  : public AudioProcessor,
+class dRowTremoloFilter  : public AudioProcessor,
                         public ChangeBroadcaster
 {
 public:
     //==============================================================================
-    DemoJuceFilter();
-    ~DemoJuceFilter();
+    dRowTremoloFilter();
+    ~dRowTremoloFilter();
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock);

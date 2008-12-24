@@ -52,8 +52,9 @@ AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 }
 
 //==============================================================================
-#pragma mark ____TremoloConstructor
-DemoJuceFilter::DemoJuceFilter() : mSamplesProcessed(0)
+#pragma mark -
+#pragma mark TremoloConstructor
+DemoJuceFilter::DemoJuceFilter()
 {
     gain = 1.0f;
 	rate = 1.0f;
@@ -61,19 +62,20 @@ DemoJuceFilter::DemoJuceFilter() : mSamplesProcessed(0)
     lastUIWidth = 400;
     lastUIHeight = 140;
 
+	mSamplesProcessed = 0;
+	tremoloBufferPosition = 0;
+	
     zeromem (&lastPosInfo, sizeof (lastPosInfo));
     lastPosInfo.timeSigNumerator = 4;
     lastPosInfo.timeSigDenominator = 4;
     lastPosInfo.bpm = 120;
-	
-	
-	tremoloBufferPosition = 0;
 }
 
 DemoJuceFilter::~DemoJuceFilter()
 {
 }
-
+#pragma mark -
+#pragma mark Tremolo Effect Methods
 //==============================================================================
 const String DemoJuceFilter::getName() const
 {
@@ -82,22 +84,22 @@ const String DemoJuceFilter::getName() const
 
 int DemoJuceFilter::getNumParameters()
 {
-    return 3;
+    return TremoloInterface::Parameters::Count;
 }
 
 // Deals with getting parameters from the UI components
 float DemoJuceFilter::getParameter (int index)
 {
     // gain parameter
-	if (index == 0)
+	if (index == TremoloInterface::Parameters::Gain)
 		return gain;
 	
 	// rate parameter
-	else if (index == 1)
+	else if (index == TremoloInterface::Parameters::Rate)
 		return rate;
 	
 	// depth parameter
-	else if (index == 2)
+	else if (index == TremoloInterface::Parameters::Depth)
 		return depth;
 
 	else
@@ -107,41 +109,29 @@ float DemoJuceFilter::getParameter (int index)
 // Deals with setting the UI components
 void DemoJuceFilter::setParameter (int index, float newValue)
 {
-    // gain parameter
-	if (index == 0)
+	if (index == TremoloInterface::Parameters::Gain)
     {
         if (gain != newValue)
         {
             gain = newValue;
-
-            // if this is changing the gain, broadcast a change message which
-            // our editor will pick up.
             sendChangeMessage (this);
         }
     }
 	
-	// rate parameter
-	else if (index == 1)
+	else if (index == TremoloInterface::Parameters::Rate)
     {
         if (rate != newValue)
         {
             rate = newValue;
-			
-            // if this is changing the gain, broadcast a change message which
-            // our editor will pick up.
             sendChangeMessage (this);
         }
     }
 	
-	// depth parameter
-	else if (index == 2)
+	else if (index == TremoloInterface::Parameters::Depth)
     {
         if (depth != newValue)
         {
             depth = newValue;
-			
-            // if this is changing the gain, broadcast a change message which
-            // our editor will pick up.
             sendChangeMessage (this);
         }
     }
@@ -150,23 +140,23 @@ void DemoJuceFilter::setParameter (int index, float newValue)
 const String DemoJuceFilter::getParameterName (int index)
 {
     // Name parameters
-	if (index == 0)
-        return T("Gain");
-	if (index == 1)
-        return T("Rate");
-	if (index == 2)
-        return T("Depth");
-
-    return String::empty;
+	if (index == TremoloInterface::Parameters::Gain)
+        return TremoloInterface::Parameters::Names[TremoloInterface::Parameters::Gain];
+	else if (index == TremoloInterface::Parameters::Rate)
+        return TremoloInterface::Parameters::Names[TremoloInterface::Parameters::Rate];
+	else if (index == TremoloInterface::Parameters::Depth)
+        return TremoloInterface::Parameters::Names[TremoloInterface::Parameters::Depth];
+	else
+		return String::empty;
 }
 
 const String DemoJuceFilter::getParameterText (int index)
 {
-    if (index == 0)
+    if (index == TremoloInterface::Parameters::Gain)
         return String (gain, 2);
-	else if (index == 1)
+	else if (index == TremoloInterface::Parameters::Rate)
         return String(rate, 2);
-	else if (index == 2)
+	else if (index == TremoloInterface::Parameters::Depth)
         return String (depth, 2);
 	else
 		return String::empty;
@@ -202,6 +192,8 @@ bool DemoJuceFilter::producesMidi() const
     return true;
 }
 
+#pragma mark -
+#pragma mark Real-Time Processing
 //==============================================================================
 void DemoJuceFilter::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
@@ -225,11 +217,14 @@ void DemoJuceFilter::releaseResources()
     // spare memory, etc.
 }
 
-#pragma mark ____processBlock
+#pragma mark Main Process Function
 void DemoJuceFilter::processBlock (AudioSampleBuffer& buffer,
                                    MidiBuffer& midiMessages)
 {
-    // for each of our input channels, we'll attenuate its level by the
+    float inSample = 0;
+	float outSample = 0;
+	
+	// for each of our input channels, we'll attenuate its level by the
     // amount that our volume parameter is set to.
     for (int channel = 0; channel < getNumInputChannels(); ++channel)
     {
@@ -241,17 +236,13 @@ void DemoJuceFilter::processBlock (AudioSampleBuffer& buffer,
 	
 	float samplesPerTremoloCycle = currentSampleRate / rate;
 	float nextScalingFactor = tremoloBufferSize / samplesPerTremoloCycle;
-	
-//	samplesPerTremoloCycle = mSampleFrequency / tremoloFrequency; // 25
-//	mNextScale = kWaveArraySize / samplesPerTremoloCycle;
-	
+		
 	//===================================================================
 	// Main Sample Loop
 	//===================================================================
-
 	while (--numSamples >= 0)
 	{
-		int tremoloBufferPosition =	long(mSamplesProcessed * currentScalingFactor) % tremoloBufferSize;
+		tremoloBufferPosition =	long(mSamplesProcessed * currentScalingFactor) % tremoloBufferSize;
 		
 		// change the scaling factor if it is safe to do so 
 		if ((nextScalingFactor != currentScalingFactor) && (tremoloBufferPosition == 0))
@@ -259,16 +250,15 @@ void DemoJuceFilter::processBlock (AudioSampleBuffer& buffer,
 			currentScalingFactor = nextScalingFactor;
 			mSamplesProcessed = 0;
 		}
-		if ((mSamplesProcessed >= 4326) && (tremoloBufferPosition == 0))   // 30
+		if ((mSamplesProcessed >= 4326) && (tremoloBufferPosition == 0))
 			mSamplesProcessed = 0;
 		
+		// process channels
 		for (int channel = 0; channel < getNumInputChannels(); ++channel)
 		{
-			float inSample = *buffer.getSampleData(channel, numSamples);
-			float outSample = inSample;
-			
-//			*buffer.getSampleData(channel, numSamples) *= rate;	//apply gain using rate parameter
-			
+			inSample = *buffer.getSampleData(channel, numSamples);
+			outSample = inSample;
+						
 			outSample *= (((tremoloBuffer[tremoloBufferPosition] -0.5) * depth) + 0.5);
 			*buffer.getSampleData(channel, numSamples) = outSample;
 		}

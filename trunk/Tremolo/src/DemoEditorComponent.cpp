@@ -76,36 +76,36 @@ DemoEditorComponent::DemoEditorComponent (DemoJuceFilter* const ownerFilter)
     : AudioProcessorEditor (ownerFilter)
 {
 	// create our gain slider..
-    addAndMakeVisible (gainSlider = new Slider (T("Gain")));
+    addAndMakeVisible (gainSlider = new Slider (T("gainSlider")));
     gainSlider->addListener (this);
     gainSlider->setRange (0.0, 1.0, 0.01);
-    gainSlider->setTooltip (T("changes the volume of the audio that runs through the plugin"));
+    gainSlider->setTooltip (T("Changes the volume of the audio that runs through the plugin"));
 
     // get the gain parameter from the filter and use it to set up our slider
-    gainSlider->setValue (ownerFilter->getParameter (0), false);
+    gainSlider->setValue (ownerFilter->getParameter (TremoloInterface::Parameters::Gain), false);
 	
-	addAndMakeVisible(gainLabel = new Label(T("gainLabel"),T("Gain")));
+	addAndMakeVisible(gainLabel = new Label(T("gainLabel"),TremoloInterface::Parameters::Names[TremoloInterface::Parameters::Gain]));
 	
 	
 	// create the rate and depth sliders
-	addAndMakeVisible(rateSlider = new Slider (T("Rate")));
+	addAndMakeVisible(rateSlider = new Slider (T("rateSlider")));
 	rateSlider->setSliderStyle(Slider::Rotary);
 	rateSlider->setTextBoxStyle(Slider::TextBoxBelow, false, 50, 15);
 	rateSlider->addListener (this);
-    rateSlider->setRange (0.0, 1.0, 0.01);
-    rateSlider->setTooltip (T("changes the rate of the tremolo effect"));
-    rateSlider->setValue (ownerFilter->getParameter (1), false);
-	addAndMakeVisible(rateLabel = new Label(T("rateLabel"),T("Rate")));
+    rateSlider->setRange (0.0, 20.0, 0.01);
+    rateSlider->setTooltip (T("Changes the rate of the tremolo effect"));
+    rateSlider->setValue (ownerFilter->getParameter (TremoloInterface::Parameters::Rate), false);
+	addAndMakeVisible(rateLabel = new Label(T("rateLabel"),TremoloInterface::Parameters::Names[TremoloInterface::Parameters::Rate]));
 	rateLabel->setJustificationType(Justification::centred);
 	
-	addAndMakeVisible(depthSlider = new Slider (T("Depth")));
+	addAndMakeVisible(depthSlider = new Slider (T("depthSlider")));
 	depthSlider->setSliderStyle(Slider::Rotary);
 	depthSlider->setTextBoxStyle(Slider::TextBoxBelow, false, 50, 15);
 	depthSlider->addListener (this);
     depthSlider->setRange (0.0, 1.0, 0.01);
-    depthSlider->setTooltip (T("changes the depth of the tremolo effect"));
-    depthSlider->setValue (ownerFilter->getParameter (2), false);
-	addAndMakeVisible(depthLabel = new Label(T("depthLabel"),T("Depth")));
+    depthSlider->setTooltip (T("Changes the depth of the tremolo effect"));
+    depthSlider->setValue (ownerFilter->getParameter (TremoloInterface::Parameters::Depth), false);
+	addAndMakeVisible(depthLabel = new Label(T("depthLabel"),TremoloInterface::Parameters::Names[TremoloInterface::Parameters::Depth]));
 	depthLabel->setJustificationType(Justification::centred);
 	
 	
@@ -180,13 +180,13 @@ void DemoEditorComponent::changeListenerCallback (void* source)
 void DemoEditorComponent::sliderValueChanged (Slider* changedSlider)
 {
     if (changedSlider == gainSlider)
-		getFilter()->setParameterNotifyingHost (0, (float) gainSlider->getValue());
+		getFilter()->setParameterNotifyingHost (TremoloInterface::Parameters::Gain, (float)gainSlider->getValue());
 	
 	else if (changedSlider == rateSlider)
-		getFilter()->setParameterNotifyingHost (1, (float) rateSlider->getValue());
+		getFilter()->setParameterNotifyingHost (TremoloInterface::Parameters::Rate, (float)rateSlider->getValue());
 	
 	else if (changedSlider == depthSlider)
-		getFilter()->setParameterNotifyingHost (2, (float) depthSlider->getValue());
+		getFilter()->setParameterNotifyingHost (TremoloInterface::Parameters::Depth, (float)depthSlider->getValue());
 }
 
 //==============================================================================
@@ -201,9 +201,9 @@ void DemoEditorComponent::updateParametersFromFilter()
 
     // take a local copy of the info we need while we've got the lock..
     const AudioPlayHead::CurrentPositionInfo positionInfo (filter->lastPosInfo);
-    const float newGain = filter->getParameter (0);
-	const float newRate = filter->getParameter (1);
-	const float newTremDepth = filter->getParameter (2);
+    const float newGain = filter->getParameter (TremoloInterface::Parameters::Gain);
+	const float newRate = filter->getParameter (TremoloInterface::Parameters::Rate);
+	const float newTremDepth = filter->getParameter (TremoloInterface::Parameters::Depth);
 
     // ..release the lock ASAP
     filter->getCallbackLock().exit();

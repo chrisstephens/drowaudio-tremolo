@@ -120,7 +120,8 @@ private:
 	static const int tremoloBufferSize = 2000;
 	float tremoloBuffer[tremoloBufferSize];
 	int tremoloBufferPosition;
-	long mSamplesProcessed;
+	long mSamplesProcessed;	
+	
 };
 
 

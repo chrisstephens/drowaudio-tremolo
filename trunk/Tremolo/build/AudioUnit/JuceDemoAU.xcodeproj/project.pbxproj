@@ -73,16 +73,6 @@
 		F4E5DC2D0898301D00589A5A /* CAVectorUnitTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = F4E5DC2A0898301D00589A5A /* CAVectorUnitTypes.h */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		55B5BC770EFF10BE009EFA62 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 55B5BC700EFF10BD009EFA62 /* Juce.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D2AAC046055464E500DB518D;
-			remoteInfo = Juce;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		84CFB0240909684B0053C22C /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -98,7 +88,6 @@
 
 /* Begin PBXFileReference section */
 		3E8BF126079CA60300021B09 /* dRowAudio_Tremolo.component */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dRowAudio_Tremolo.component; sourceTree = BUILT_PRODUCTS_DIR; };
-		55B5BC700EFF10BD009EFA62 /* Juce.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Juce.xcodeproj; path = ../../../../juce/build/macosx/Juce.xcodeproj; sourceTree = SOURCE_ROOT; };
 		55B5BC830EFF1147009EFA62 /* juce_amalgamated.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = juce_amalgamated.mm; path = ../../../../juce/juce_amalgamated.mm; sourceTree = SOURCE_ROOT; };
 		55B5BC900EFF1254009EFA62 /* juce.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = juce.xcconfig; path = ../../../../juce/build/macosx/juce.xcconfig; sourceTree = SOURCE_ROOT; };
 		55B5BCAB0EFF15D0009EFA62 /* juce_AudioUnitWrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = juce_AudioUnitWrapper.cpp; path = "../../../../juce/extras/audio plugins/wrapper/formats/AudioUnit/juce_AudioUnitWrapper.cpp"; sourceTree = SOURCE_ROOT; };
@@ -197,14 +186,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		55B5BC710EFF10BD009EFA62 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				55B5BC780EFF10BE009EFA62 /* libjuce.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		84EB403B090A4ED3008FAC1B /* Juce AU Code */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,7 +265,6 @@
 		F5AA9E890281AAC901C34293 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				55B5BC700EFF10BD009EFA62 /* Juce.xcodeproj */,
 				84C0A2B20DE2C80200606895 /* AudioToolbox.framework */,
 				84C0A2930DE2C7BD00606895 /* AGL.framework */,
 				84C0A2940DE2C7BD00606895 /* ApplicationServices.framework */,
@@ -457,28 +437,12 @@
 			mainGroup = F5AA99B60281A61201C34293;
 			productRefGroup = F5AA99C40281A62C01C34293 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 55B5BC710EFF10BD009EFA62 /* Products */;
-					ProjectRef = 55B5BC700EFF10BD009EFA62 /* Juce.xcodeproj */;
-				},
-			);
 			projectRoot = ../..;
 			targets = (
 				3E8BF102079CA60300021B09 /* JuceAU */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		55B5BC780EFF10BE009EFA62 /* libjuce.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libjuce.a;
-			remoteRef = 55B5BC770EFF10BE009EFA62 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3E8BF110079CA60300021B09 /* Resources */ = {

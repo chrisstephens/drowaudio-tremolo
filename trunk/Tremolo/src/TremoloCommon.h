@@ -7,9 +7,6 @@
  means they can live right next to the enums which need to match except the enums should have a final
  item "Count". These #defined name arrays are assigned to the Names[] array in each nested class
  in the TremoloCommon.cpp file. 
- 
- Your inteface will be built based on this info, so edit it carefully!
- 
  */
 
 // make sure the #defines here match the enums in each of these nested classes

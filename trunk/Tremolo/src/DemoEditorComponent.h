@@ -3,6 +3,7 @@
 
    This file is part of the JUCE library - "Jules' Utility Class Extensions"
    Copyright 2004-7 by Raw Material Software ltd.
+   Modified 2008 by David Rowland - dRowAudio
 
   ------------------------------------------------------------------------------
 
@@ -84,12 +85,13 @@ private:
     Slider* gainSlider;
 	Slider* rateSlider;
 	Slider* depthSlider;
-    MidiKeyboardComponent* midiKeyboard;
     Label* gainLabel;
 	Label* rateLabel;
 	Label* depthLabel;
+	MidiKeyboardComponent* midiKeyboard;
 	Label* infoLabel;
-    ResizableCornerComponent* resizer;
+    
+	ResizableCornerComponent* resizer;
     ComponentBoundsConstrainer resizeLimits;
     TooltipWindow tooltipWindow;
 

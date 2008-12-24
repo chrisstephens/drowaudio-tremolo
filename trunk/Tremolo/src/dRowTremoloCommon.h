@@ -1,12 +1,12 @@
-#ifndef TREMOLOCOMMON_H
-#define TREMOLOCOMMON_H
+#ifndef DROWTREMOLOCOMMON_H
+#define DROWTREMOLOCOMMON_H
 
 /*
  Use this file to confiure the plugin parameters (sliders), buttons and menu options
  It would be preferable to minimise the #defines but using the #defines for the name arrays
  means they can live right next to the enums which need to match except the enums should have a final
  item "Count". These #defined name arrays are assigned to the Names[] array in each nested class
- in the TremoloCommon.cpp file. 
+ in the dRowTremoloCommon.cpp file. 
  */
 
 // make sure the #defines here match the enums in each of these nested classes

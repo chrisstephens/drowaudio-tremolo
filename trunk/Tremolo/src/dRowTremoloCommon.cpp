@@ -1,5 +1,5 @@
 #include "includes.h"
-#include "TremoloCommon.h"
+#include "dRowTremoloCommon.h"
 
 
 char* TremoloInterface::Parameters::Names[]		= TremoloInterfaceParameterNames;

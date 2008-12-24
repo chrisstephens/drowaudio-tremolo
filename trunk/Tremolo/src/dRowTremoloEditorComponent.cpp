@@ -30,8 +30,8 @@
 */
 
 #include "includes.h"
-#include "TremoloCommon.h"
-#include "DemoEditorComponent.h"
+#include "dRowTremoloCommon.h"
+#include "dRowTremoloEditorComponent.h"
 
 //==============================================================================
 // quick-and-dirty function to format a timecode string
@@ -72,7 +72,7 @@ static const String ppqToBarsBeatsString (const double ppq,
 
 
 //==============================================================================
-DemoEditorComponent::DemoEditorComponent (DemoJuceFilter* const ownerFilter)
+dRowTremoloEditorComponent::dRowTremoloEditorComponent (dRowTremoloFilter* const ownerFilter)
     : AudioProcessorEditor (ownerFilter)
 {
 	// create our gain slider..
@@ -131,7 +131,7 @@ DemoEditorComponent::DemoEditorComponent (DemoJuceFilter* const ownerFilter)
     ownerFilter->addChangeListener (this);
 }
 
-DemoEditorComponent::~DemoEditorComponent()
+dRowTremoloEditorComponent::~dRowTremoloEditorComponent()
 {
     getFilter()->removeChangeListener (this);
 
@@ -139,13 +139,13 @@ DemoEditorComponent::~DemoEditorComponent()
 }
 
 //==============================================================================
-void DemoEditorComponent::paint (Graphics& g)
+void dRowTremoloEditorComponent::paint (Graphics& g)
 {
     // just clear the window
     g.fillAll (Colour::greyLevel (0.9f));
 }
 
-void DemoEditorComponent::resized()
+void dRowTremoloEditorComponent::resized()
 {
     gainLabel->setBounds(10, 10, 40, 22);
 	gainSlider->setBounds (50, 10, 200, 22);
@@ -170,14 +170,14 @@ void DemoEditorComponent::resized()
 }
 
 //==============================================================================
-void DemoEditorComponent::changeListenerCallback (void* source)
+void dRowTremoloEditorComponent::changeListenerCallback (void* source)
 {
     // this is the filter telling us that it's changed, so we'll update our
     // display of the time, midi message, etc.
     updateParametersFromFilter();
 }
 
-void DemoEditorComponent::sliderValueChanged (Slider* changedSlider)
+void dRowTremoloEditorComponent::sliderValueChanged (Slider* changedSlider)
 {
     if (changedSlider == gainSlider)
 		getFilter()->setParameterNotifyingHost (TremoloInterface::Parameters::Gain, (float)gainSlider->getValue());
@@ -190,9 +190,9 @@ void DemoEditorComponent::sliderValueChanged (Slider* changedSlider)
 }
 
 //==============================================================================
-void DemoEditorComponent::updateParametersFromFilter()
+void dRowTremoloEditorComponent::updateParametersFromFilter()
 {
-    DemoJuceFilter* const filter = getFilter();
+    dRowTremoloFilter* const filter = getFilter();
 
     // we use this lock to make sure the processBlock() method isn't writing to the
     // lastMidiMessage variable while we're trying to read it, but be extra-careful to

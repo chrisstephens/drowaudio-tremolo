@@ -19,8 +19,8 @@
 		55B5BC910EFF1254009EFA62 /* juce.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 55B5BC900EFF1254009EFA62 /* juce.xcconfig */; };
 		55B5BCAD0EFF15D0009EFA62 /* juce_AudioUnitWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55B5BCAB0EFF15D0009EFA62 /* juce_AudioUnitWrapper.cpp */; };
 		55B5BCAE0EFF15D0009EFA62 /* juce_AudioUnitWrapper.r in Rez */ = {isa = PBXBuildFile; fileRef = 55B5BCAC0EFF15D0009EFA62 /* juce_AudioUnitWrapper.r */; };
-		55F710050F0058B5009D9CD1 /* TremoloCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55F710030F0058B5009D9CD1 /* TremoloCommon.cpp */; };
-		55F710060F0058B5009D9CD1 /* TremoloCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 55F710040F0058B5009D9CD1 /* TremoloCommon.h */; };
+		55F710050F0058B5009D9CD1 /* dRowTremoloCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55F710030F0058B5009D9CD1 /* dRowTremoloCommon.cpp */; };
+		55F710060F0058B5009D9CD1 /* dRowTremoloCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 55F710040F0058B5009D9CD1 /* dRowTremoloCommon.h */; };
 		84581F8F0D917FC700AE1A4C /* AUBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84581F820D917FC700AE1A4C /* AUBase.cpp */; };
 		84581F900D917FC700AE1A4C /* AUBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 84581F830D917FC700AE1A4C /* AUBase.h */; };
 		84581F910D917FC700AE1A4C /* AUDispatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84581F840D917FC700AE1A4C /* AUDispatch.cpp */; };
@@ -63,10 +63,10 @@
 		84F054E90906C8DD00AEC8DB /* AUMIDIBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 84F054E50906C8DD00AEC8DB /* AUMIDIBase.h */; };
 		84F054EA0906C8DD00AEC8DB /* AUMIDIEffectBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84F054E60906C8DD00AEC8DB /* AUMIDIEffectBase.cpp */; };
 		84F054EB0906C8DD00AEC8DB /* AUMIDIEffectBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 84F054E70906C8DD00AEC8DB /* AUMIDIEffectBase.h */; };
-		84F055010906E9EA00AEC8DB /* DemoEditorComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84F054FD0906E9EA00AEC8DB /* DemoEditorComponent.cpp */; };
-		84F055020906E9EA00AEC8DB /* DemoEditorComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 84F054FE0906E9EA00AEC8DB /* DemoEditorComponent.h */; };
-		84F055030906E9EA00AEC8DB /* DemoJuceFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84F054FF0906E9EA00AEC8DB /* DemoJuceFilter.cpp */; };
-		84F055040906E9EA00AEC8DB /* DemoJuceFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 84F055000906E9EA00AEC8DB /* DemoJuceFilter.h */; };
+		84F055010906E9EA00AEC8DB /* dRowTremoloEditorComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84F054FD0906E9EA00AEC8DB /* dRowTremoloEditorComponent.cpp */; };
+		84F055020906E9EA00AEC8DB /* dRowTremoloEditorComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 84F054FE0906E9EA00AEC8DB /* dRowTremoloEditorComponent.h */; };
+		84F055030906E9EA00AEC8DB /* dRowTremoloFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84F054FF0906E9EA00AEC8DB /* dRowTremoloFilter.cpp */; };
+		84F055040906E9EA00AEC8DB /* dRowTremoloFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 84F055000906E9EA00AEC8DB /* dRowTremoloFilter.h */; };
 		84F055260906FBCF00AEC8DB /* AUSilentTimeout.h in Headers */ = {isa = PBXBuildFile; fileRef = 84F055250906FBCF00AEC8DB /* AUSilentTimeout.h */; };
 		A9E885EA0874B5BF00B2DFE8 /* CAThreadSafeList.h in Headers */ = {isa = PBXBuildFile; fileRef = A9E885E90874B5BF00B2DFE8 /* CAThreadSafeList.h */; };
 		F4E5DC2C0898301D00589A5A /* CAVectorUnit.h in Headers */ = {isa = PBXBuildFile; fileRef = F4E5DC290898301D00589A5A /* CAVectorUnit.h */; };
@@ -92,8 +92,8 @@
 		55B5BC900EFF1254009EFA62 /* juce.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = juce.xcconfig; path = ../../../../juce/build/macosx/juce.xcconfig; sourceTree = SOURCE_ROOT; };
 		55B5BCAB0EFF15D0009EFA62 /* juce_AudioUnitWrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = juce_AudioUnitWrapper.cpp; path = "../../../../juce/extras/audio plugins/wrapper/formats/AudioUnit/juce_AudioUnitWrapper.cpp"; sourceTree = SOURCE_ROOT; };
 		55B5BCAC0EFF15D0009EFA62 /* juce_AudioUnitWrapper.r */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.rez; name = juce_AudioUnitWrapper.r; path = "../../../../juce/extras/audio plugins/wrapper/formats/AudioUnit/juce_AudioUnitWrapper.r"; sourceTree = SOURCE_ROOT; };
-		55F710030F0058B5009D9CD1 /* TremoloCommon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TremoloCommon.cpp; path = ../../src/TremoloCommon.cpp; sourceTree = SOURCE_ROOT; };
-		55F710040F0058B5009D9CD1 /* TremoloCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TremoloCommon.h; path = ../../src/TremoloCommon.h; sourceTree = SOURCE_ROOT; };
+		55F710030F0058B5009D9CD1 /* dRowTremoloCommon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dRowTremoloCommon.cpp; path = ../../src/dRowTremoloCommon.cpp; sourceTree = "<group>"; };
+		55F710040F0058B5009D9CD1 /* dRowTremoloCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dRowTremoloCommon.h; path = ../../src/dRowTremoloCommon.h; sourceTree = "<group>"; };
 		7967EF8B04D70E7C00C625F7 /* CAAudioChannelLayout.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = CAAudioChannelLayout.cpp; sourceTree = "<group>"; };
 		7967EF8C04D70E7C00C625F7 /* CAAudioChannelLayout.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CAAudioChannelLayout.h; sourceTree = "<group>"; };
 		7967EF8D04D70E7C00C625F7 /* CAStreamBasicDescription.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = CAStreamBasicDescription.cpp; sourceTree = "<group>"; };
@@ -134,10 +134,10 @@
 		84F054E50906C8DD00AEC8DB /* AUMIDIBase.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = AUMIDIBase.h; path = /Developer/Examples/CoreAudio/AudioUnits/AUPublic/OtherBases/AUMIDIBase.h; sourceTree = "<absolute>"; };
 		84F054E60906C8DD00AEC8DB /* AUMIDIEffectBase.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = AUMIDIEffectBase.cpp; path = /Developer/Examples/CoreAudio/AudioUnits/AUPublic/OtherBases/AUMIDIEffectBase.cpp; sourceTree = "<absolute>"; };
 		84F054E70906C8DD00AEC8DB /* AUMIDIEffectBase.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = AUMIDIEffectBase.h; path = /Developer/Examples/CoreAudio/AudioUnits/AUPublic/OtherBases/AUMIDIEffectBase.h; sourceTree = "<absolute>"; };
-		84F054FD0906E9EA00AEC8DB /* DemoEditorComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = DemoEditorComponent.cpp; path = ../../src/DemoEditorComponent.cpp; sourceTree = SOURCE_ROOT; };
-		84F054FE0906E9EA00AEC8DB /* DemoEditorComponent.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = DemoEditorComponent.h; path = ../../src/DemoEditorComponent.h; sourceTree = SOURCE_ROOT; };
-		84F054FF0906E9EA00AEC8DB /* DemoJuceFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = DemoJuceFilter.cpp; path = ../../src/DemoJuceFilter.cpp; sourceTree = SOURCE_ROOT; };
-		84F055000906E9EA00AEC8DB /* DemoJuceFilter.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = DemoJuceFilter.h; path = ../../src/DemoJuceFilter.h; sourceTree = SOURCE_ROOT; };
+		84F054FD0906E9EA00AEC8DB /* dRowTremoloEditorComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = dRowTremoloEditorComponent.cpp; path = ../../src/dRowTremoloEditorComponent.cpp; sourceTree = "<group>"; };
+		84F054FE0906E9EA00AEC8DB /* dRowTremoloEditorComponent.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = dRowTremoloEditorComponent.h; path = ../../src/dRowTremoloEditorComponent.h; sourceTree = "<group>"; };
+		84F054FF0906E9EA00AEC8DB /* dRowTremoloFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = dRowTremoloFilter.cpp; path = ../../src/dRowTremoloFilter.cpp; sourceTree = "<group>"; };
+		84F055000906E9EA00AEC8DB /* dRowTremoloFilter.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = dRowTremoloFilter.h; path = ../../src/dRowTremoloFilter.h; sourceTree = "<group>"; };
 		84F055250906FBCF00AEC8DB /* AUSilentTimeout.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = AUSilentTimeout.h; path = /Developer/Examples/CoreAudio/AudioUnits/AUPublic/Utility/AUSilentTimeout.h; sourceTree = "<absolute>"; };
 		A3C2CC6105B4A4BE000F141E /* AUViewLocalizedStringKeys.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AUViewLocalizedStringKeys.h; sourceTree = "<group>"; };
 		A9E885E90874B5BF00B2DFE8 /* CAThreadSafeList.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CAThreadSafeList.h; sourceTree = "<group>"; };
@@ -198,12 +198,12 @@
 		84F0516D09066DB800AEC8DB /* Plugin Code */ = {
 			isa = PBXGroup;
 			children = (
-				55F710040F0058B5009D9CD1 /* TremoloCommon.h */,
-				55F710030F0058B5009D9CD1 /* TremoloCommon.cpp */,
-				84F054FE0906E9EA00AEC8DB /* DemoEditorComponent.h */,
-				84F054FD0906E9EA00AEC8DB /* DemoEditorComponent.cpp */,
-				84F055000906E9EA00AEC8DB /* DemoJuceFilter.h */,
-				84F054FF0906E9EA00AEC8DB /* DemoJuceFilter.cpp */,
+				55F710040F0058B5009D9CD1 /* dRowTremoloCommon.h */,
+				55F710030F0058B5009D9CD1 /* dRowTremoloCommon.cpp */,
+				84F054FE0906E9EA00AEC8DB /* dRowTremoloEditorComponent.h */,
+				84F054FD0906E9EA00AEC8DB /* dRowTremoloEditorComponent.cpp */,
+				84F055000906E9EA00AEC8DB /* dRowTremoloFilter.h */,
+				84F054FF0906E9EA00AEC8DB /* dRowTremoloFilter.cpp */,
 				84EB404D090A5116008FAC1B /* JucePluginCharacteristics.h */,
 				84C09D290DE2C52600606895 /* includes.h */,
 				55B5BC830EFF1147009EFA62 /* juce_amalgamated.mm */,
@@ -386,8 +386,8 @@
 				F4E5DC2D0898301D00589A5A /* CAVectorUnitTypes.h in Headers */,
 				84F054E90906C8DD00AEC8DB /* AUMIDIBase.h in Headers */,
 				84F054EB0906C8DD00AEC8DB /* AUMIDIEffectBase.h in Headers */,
-				84F055020906E9EA00AEC8DB /* DemoEditorComponent.h in Headers */,
-				84F055040906E9EA00AEC8DB /* DemoJuceFilter.h in Headers */,
+				84F055020906E9EA00AEC8DB /* dRowTremoloEditorComponent.h in Headers */,
+				84F055040906E9EA00AEC8DB /* dRowTremoloFilter.h in Headers */,
 				84F055260906FBCF00AEC8DB /* AUSilentTimeout.h in Headers */,
 				84EB404E090A5116008FAC1B /* JucePluginCharacteristics.h in Headers */,
 				84B4CDD20C7DD23B0083122F /* MusicDeviceBase.h in Headers */,
@@ -398,7 +398,7 @@
 				84581F990D917FC700AE1A4C /* AUScopeElement.h in Headers */,
 				84581F9B0D917FC700AE1A4C /* ComponentBase.h in Headers */,
 				84C09D2A0DE2C52600606895 /* includes.h in Headers */,
-				55F710060F0058B5009D9CD1 /* TremoloCommon.h in Headers */,
+				55F710060F0058B5009D9CD1 /* dRowTremoloCommon.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,8 +482,8 @@
 				3E8BF11A079CA60300021B09 /* AUBuffer.cpp in Sources */,
 				84F054E80906C8DD00AEC8DB /* AUMIDIBase.cpp in Sources */,
 				84F054EA0906C8DD00AEC8DB /* AUMIDIEffectBase.cpp in Sources */,
-				84F055010906E9EA00AEC8DB /* DemoEditorComponent.cpp in Sources */,
-				84F055030906E9EA00AEC8DB /* DemoJuceFilter.cpp in Sources */,
+				84F055010906E9EA00AEC8DB /* dRowTremoloEditorComponent.cpp in Sources */,
+				84F055030906E9EA00AEC8DB /* dRowTremoloFilter.cpp in Sources */,
 				84EB4042090A4F5A008FAC1B /* CAVectorUnit.cpp in Sources */,
 				84B4CDD10C7DD23B0083122F /* MusicDeviceBase.cpp in Sources */,
 				84581F8F0D917FC700AE1A4C /* AUBase.cpp in Sources */,
@@ -494,7 +494,7 @@
 				84581F9A0D917FC700AE1A4C /* ComponentBase.cpp in Sources */,
 				55B5BC840EFF1147009EFA62 /* juce_amalgamated.mm in Sources */,
 				55B5BCAD0EFF15D0009EFA62 /* juce_AudioUnitWrapper.cpp in Sources */,
-				55F710050F0058B5009D9CD1 /* TremoloCommon.cpp in Sources */,
+				55F710050F0058B5009D9CD1 /* dRowTremoloCommon.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,7 +569,7 @@
 		A9E884BA0874ABE600B2DFE8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				AU_NAME = DemoJuceAudioUnit;
+				AU_NAME = dRowAudio_Tremolo;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				HEADER_SEARCH_PATHS = ../../../../../;
 				LIBRARY_SEARCH_PATHS = ../../../../../bin;
@@ -579,7 +579,7 @@
 		A9E884BB0874ABE600B2DFE8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				AU_NAME = DemoJuceAudioUnit;
+				AU_NAME = dRowAudio_Tremolo;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				HEADER_SEARCH_PATHS = ../../../../../;
 				LIBRARY_SEARCH_PATHS = ../../../../../bin;

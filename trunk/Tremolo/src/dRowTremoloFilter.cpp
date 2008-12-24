@@ -30,9 +30,9 @@
 */
 
 #include "includes.h"
-#include "TremoloCommon.h"
-#include "DemoJuceFilter.h"
-#include "DemoEditorComponent.h"
+#include "dRowTremoloCommon.h"
+#include "dRowTremoloFilter.h"
+#include "dRowTremoloEditorComponent.h"
 
 /** List of todo's:
 	
@@ -48,13 +48,13 @@
 */
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-    return new DemoJuceFilter();
+    return new dRowTremoloFilter();
 }
 
 //==============================================================================
 #pragma mark -
 #pragma mark TremoloConstructor
-DemoJuceFilter::DemoJuceFilter()
+dRowTremoloFilter::dRowTremoloFilter()
 {
     gain = 1.0f;
 	rate = 1.0f;
@@ -71,24 +71,24 @@ DemoJuceFilter::DemoJuceFilter()
     lastPosInfo.bpm = 120;
 }
 
-DemoJuceFilter::~DemoJuceFilter()
+dRowTremoloFilter::~dRowTremoloFilter()
 {
 }
 #pragma mark -
 #pragma mark Tremolo Effect Methods
 //==============================================================================
-const String DemoJuceFilter::getName() const
+const String dRowTremoloFilter::getName() const
 {
     return "dRowAudio Tremolo";
 }
 
-int DemoJuceFilter::getNumParameters()
+int dRowTremoloFilter::getNumParameters()
 {
     return TremoloInterface::Parameters::Count;
 }
 
 // Deals with getting parameters from the UI components
-float DemoJuceFilter::getParameter (int index)
+float dRowTremoloFilter::getParameter (int index)
 {
     // gain parameter
 	if (index == TremoloInterface::Parameters::Gain)
@@ -107,7 +107,7 @@ float DemoJuceFilter::getParameter (int index)
 }
 
 // Deals with setting the UI components
-void DemoJuceFilter::setParameter (int index, float newValue)
+void dRowTremoloFilter::setParameter (int index, float newValue)
 {
 	if (index == TremoloInterface::Parameters::Gain)
     {
@@ -137,7 +137,7 @@ void DemoJuceFilter::setParameter (int index, float newValue)
     }
 }
 
-const String DemoJuceFilter::getParameterName (int index)
+const String dRowTremoloFilter::getParameterName (int index)
 {
     // Name parameters
 	if (index == TremoloInterface::Parameters::Gain)
@@ -150,7 +150,7 @@ const String DemoJuceFilter::getParameterName (int index)
 		return String::empty;
 }
 
-const String DemoJuceFilter::getParameterText (int index)
+const String dRowTremoloFilter::getParameterText (int index)
 {
     if (index == TremoloInterface::Parameters::Gain)
         return String (gain, 2);
@@ -162,32 +162,32 @@ const String DemoJuceFilter::getParameterText (int index)
 		return String::empty;
 }
 
-const String DemoJuceFilter::getInputChannelName (const int channelIndex) const
+const String dRowTremoloFilter::getInputChannelName (const int channelIndex) const
 {
     return String (channelIndex + 1);
 }
 
-const String DemoJuceFilter::getOutputChannelName (const int channelIndex) const
+const String dRowTremoloFilter::getOutputChannelName (const int channelIndex) const
 {
     return String (channelIndex + 1);
 }
 
-bool DemoJuceFilter::isInputChannelStereoPair (int index) const
+bool dRowTremoloFilter::isInputChannelStereoPair (int index) const
 {
     return false;
 }
 
-bool DemoJuceFilter::isOutputChannelStereoPair (int index) const
+bool dRowTremoloFilter::isOutputChannelStereoPair (int index) const
 {
     return false;
 }
 
-bool DemoJuceFilter::acceptsMidi() const
+bool dRowTremoloFilter::acceptsMidi() const
 {
     return true;
 }
 
-bool DemoJuceFilter::producesMidi() const
+bool dRowTremoloFilter::producesMidi() const
 {
     return true;
 }
@@ -195,7 +195,7 @@ bool DemoJuceFilter::producesMidi() const
 #pragma mark -
 #pragma mark Real-Time Processing
 //==============================================================================
-void DemoJuceFilter::prepareToPlay (double sampleRate, int samplesPerBlock)
+void dRowTremoloFilter::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     // do your pre-playback setup stuff here..
     keyboardState.reset();
@@ -207,18 +207,18 @@ void DemoJuceFilter::prepareToPlay (double sampleRate, int samplesPerBlock)
 	{
 		// fill buffer with sine data
 		double radians = i * 2.0 * (pi / tremoloBufferSize);
-        tremoloBuffer[i] = (sin (radians) + 1.0) * 0.5;
+        tremoloBuffer[i] = (sin(radians) + 1.0) * 0.5;
     }
 }
 
-void DemoJuceFilter::releaseResources()
+void dRowTremoloFilter::releaseResources()
 {
     // when playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
 
 #pragma mark Main Process Function
-void DemoJuceFilter::processBlock (AudioSampleBuffer& buffer,
+void dRowTremoloFilter::processBlock (AudioSampleBuffer& buffer,
                                    MidiBuffer& midiMessages)
 {
     float inSample = 0;
@@ -242,7 +242,8 @@ void DemoJuceFilter::processBlock (AudioSampleBuffer& buffer,
 	//===================================================================
 	while (--numSamples >= 0)
 	{
-		tremoloBufferPosition =	long(mSamplesProcessed * currentScalingFactor) % tremoloBufferSize;
+		// calculte the buffer position to use based on the current scale
+		tremoloBufferPosition =	 ( static_cast<long>(mSamplesProcessed * currentScalingFactor) % tremoloBufferSize);
 		
 		// change the scaling factor if it is safe to do so 
 		if ((nextScalingFactor != currentScalingFactor) && (tremoloBufferPosition == 0))
@@ -250,7 +251,8 @@ void DemoJuceFilter::processBlock (AudioSampleBuffer& buffer,
 			currentScalingFactor = nextScalingFactor;
 			mSamplesProcessed = 0;
 		}
-		if ((mSamplesProcessed >= 4326) && (tremoloBufferPosition == 0))
+		// reset the samples processed if it gets too big
+		if ((mSamplesProcessed >= 30000) && (tremoloBufferPosition == 0))
 			mSamplesProcessed = 0;
 		
 		// process channels
@@ -259,16 +261,12 @@ void DemoJuceFilter::processBlock (AudioSampleBuffer& buffer,
 			inSample = *buffer.getSampleData(channel, numSamples);
 			outSample = inSample;
 						
-			outSample *= (((tremoloBuffer[tremoloBufferPosition] -0.5) * depth) + 0.5);
+			outSample *= (((tremoloBuffer[tremoloBufferPosition] - 0.5) * depth) + 0.5);
 			*buffer.getSampleData(channel, numSamples) = outSample;
 		}
 		mSamplesProcessed++;
-		// increment buffer position
-//		tremoloBufferPosition++;
-//		if (tremoloBufferPosition == tremoloBufferSize)
-//			tremoloBufferPosition = 0;
-		// increment our counter
     }
+	//===================================================================
 	
 	
 	
@@ -309,15 +307,15 @@ void DemoJuceFilter::processBlock (AudioSampleBuffer& buffer,
 }
 
 //==============================================================================
-AudioProcessorEditor* DemoJuceFilter::createEditor()
+AudioProcessorEditor* dRowTremoloFilter::createEditor()
 {
-    return new DemoEditorComponent (this);
+    return new dRowTremoloEditorComponent (this);
 }
 
 #pragma mark -
 #pragma mark State Information
 //==============================================================================
-void DemoJuceFilter::getStateInformation (MemoryBlock& destData)
+void dRowTremoloFilter::getStateInformation (MemoryBlock& destData)
 {
     // you can store your parameters as binary data if you want to or if you've got
     // a load of binary to put in there, but if you're not doing anything too heavy,
@@ -342,7 +340,7 @@ void DemoJuceFilter::getStateInformation (MemoryBlock& destData)
     copyXmlToBinary (xmlState, destData);
 }
 
-void DemoJuceFilter::setStateInformation (const void* data, int sizeInBytes)
+void dRowTremoloFilter::setStateInformation (const void* data, int sizeInBytes)
 {
     // use this helper function to get the XML from this binary blob..
     XmlElement* const xmlState = getXmlFromBinary (data, sizeInBytes);

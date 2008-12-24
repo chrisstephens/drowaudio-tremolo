@@ -30,17 +30,17 @@
   ==============================================================================
 */
 
-#ifndef DEMOJUCEPLUGINEDITOR_H
-#define DEMOJUCEPLUGINEDITOR_H
+#ifndef DROWTREMOLOEDITOR_H
+#define DROWTREMOLOEDITOR_H
 
-#include "DemoJuceFilter.h"
+#include "dRowTremoloFilter.h"
 
 
 //==============================================================================
 /**
     This is the Component that our filter will use as its UI.
 
-    One or more of these is created by the DemoJuceFilter::createEditor() method,
+    One or more of these is created by the dRowTremoloFilter::createEditor() method,
     and they will be deleted at some later time by the wrapper code.
 
     To demonstrate the correct way of connecting a filter to its UI, this
@@ -49,7 +49,7 @@
     when it's destroyed. When the filter's parameters are changed, it broadcasts
     a message and this editor responds by updating its display.
 */
-class DemoEditorComponent   : public AudioProcessorEditor,
+class dRowTremoloEditorComponent   : public AudioProcessorEditor,
                               public ChangeListener,
                               public SliderListener
 {
@@ -59,10 +59,10 @@ public:
         When created, this will register itself with the filter for changes. It's
         safe to assume that the filter won't be deleted before this object is.
     */
-    DemoEditorComponent (DemoJuceFilter* const ownerFilter);
+    dRowTremoloEditorComponent (dRowTremoloFilter* const ownerFilter);
 
     /** Destructor. */
-    ~DemoEditorComponent();
+    ~dRowTremoloEditorComponent();
 
     //==============================================================================
     /** Our demo filter is a ChangeBroadcaster, and will call us back when one of
@@ -97,9 +97,9 @@ private:
 
     void updateParametersFromFilter();
 
-    // handy wrapper method to avoid having to cast the filter to a DemoJuceFilter
+    // handy wrapper method to avoid having to cast the filter to a dRowTremoloFilter
     // every time we need it..
-    DemoJuceFilter* getFilter() const throw()       { return (DemoJuceFilter*) getAudioProcessor(); }
+    dRowTremoloFilter* getFilter() const throw()       { return (dRowTremoloFilter*) getAudioProcessor(); }
 };
 
 
